@@ -29,15 +29,13 @@ class Solution(object):
         :type head: ListNode
         :rtype: ListNode
         """
-        if not head:
-            return head
-        prev_node,curr_node=head,head.next
-        prev_node.next=None
+        prev=None
+        curr=head
+
+        while curr:
+            temp=curr.next
+            curr.next=prev
+            prev=curr
+            curr=temp
+        return prev
         
-        while curr_node:
-            next_node=curr_node.next
-            curr_node.next=prev_node
-            prev_node=curr_node
-            curr_node=next_node
-            
-        return prev_node
